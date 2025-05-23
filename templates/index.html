@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SaaS Simple con Flask</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>MiSaaS</h1>
+            <nav>
+                <ul>
+                    <li><a href="#features">Características</a></li>
+                    <li><a href="#pricing">Precios</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                    <li><a href="#register" class="btn">Regístrate</a></li>
+                    <a href="{{ url_for('admin_login') }}" class="btn btn-outline-primary">Admin</a>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h2>Software como Servicio Simple</h2>
+            <p>Implementado con Flask y listo para desplegar en AWS</p>
+            <a href="#register" class="btn">Comenzar</a>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2>Características</h2>
+            <div class="feature-grid">
+                <div class="feature">
+                    <h3>Simple</h3>
+                    <p>Backend con Flask fácil de entender y modificar.</p>
+                </div>
+                <div class="feature">
+                    <h3>Seguro</h3>
+                    <p>Preparado para implementar seguridad en AWS.</p>
+                </div>
+                <div class="feature">
+                    <h3>Escalable</h3>
+                    <p>Arquitectura lista para crecer en la nube.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="register" class="register">
+        <div class="container">
+            <h2>Regístrate</h2>
+            
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            
+            <form action="{{ url_for('register') }}" method="POST">
+                <div class="form-group">
+                    <label for="username">Nombre de usuario:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo electrónico:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn">Registrarse</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 MiSaaS - Proyecto para AWS</p>
+        </div>
+    </footer>
+</body>
+</html>

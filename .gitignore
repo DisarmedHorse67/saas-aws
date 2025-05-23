@@ -1,0 +1,10 @@
+# Archivos a ignorar
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+*.sqlite3
+instance/
+.DS_Store
